@@ -41,7 +41,7 @@ const mapStateToProps = (
   filterId: number | null
   searchText: string
 } => ({
-  loading: state.posts.loading.default,
+  loading: state.posts.loading.getData,
   error: state.posts.error,
   data: state.posts.data,
   filterId: state.posts.filterId,

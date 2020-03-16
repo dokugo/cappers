@@ -3,8 +3,9 @@ import ActionTypes, { Actions } from './actionTypes'
 
 interface State {
   loading: {
-    default: boolean
+    getData: boolean
     postDelete: boolean
+    postUpdate: boolean
   }
   error: null | string
   data: Post[]
@@ -16,7 +17,8 @@ interface State {
 
 const initialState: State = {
   loading: {
-    default: false,
+    getData: false,
+    postUpdate: false,
     postDelete: false,
   },
   error: null,
@@ -34,14 +36,14 @@ function postsReducer(state: State = initialState, action: Actions): State {
     case ActionTypes.DATA_LOAD_START:
       return {
         ...state,
-        loading: { ...state.loading, default: true },
+        loading: { ...state.loading, getData: true },
         error: null,
       }
 
     case ActionTypes.DATA_LOAD_SUCCESS:
       return {
         ...state,
-        loading: { ...state.loading, default: false },
+        loading: { ...state.loading, getData: false },
         error: null,
         data: action.payload.data,
         users: action.payload.users,
@@ -50,7 +52,7 @@ function postsReducer(state: State = initialState, action: Actions): State {
     case ActionTypes.DATA_LOAD_ERROR:
       return {
         ...state,
-        loading: { ...state.loading, default: false },
+        loading: { ...state.loading, getData: false },
         error: action.payload,
       }
 
@@ -59,14 +61,14 @@ function postsReducer(state: State = initialState, action: Actions): State {
     case ActionTypes.POST_UPDATE_START:
       return {
         ...state,
-        loading: { ...state.loading, default: true },
+        loading: { ...state.loading, postUpdate: true },
         error: null,
       }
 
     case ActionTypes.POST_UPDATE_SUCCESS:
       return {
         ...state,
-        loading: { ...state.loading, default: false },
+        loading: { ...state.loading, postUpdate: false },
         error: null,
         data: [
           ...state.data.map(element =>
@@ -84,7 +86,7 @@ function postsReducer(state: State = initialState, action: Actions): State {
     case ActionTypes.POST_UPDATE_ERROR:
       return {
         ...state,
-        loading: { ...state.loading, default: false },
+        loading: { ...state.loading, postUpdate: false },
         error: action.payload,
       }
 

@@ -14,12 +14,14 @@ import { RootState } from './store/rootReducer'
 
 NProgress.configure({ showSpinner: false })
 
-const App: FC<Props> = ({ loading, postDeleteLoading, getData }) => {
+const App: FC<Props> = ({ loading, postDeleteLoading, postUpdateLoading }) => {
   useEffect(() => {
     getData()
   }, [getData])
 
-  loading || postDeleteLoading ? NProgress.start() : NProgress.done()
+  loading || postUpdateLoading || postDeleteLoading
+    ? NProgress.start()
+    : NProgress.done()
 
   return (
     <BrowserRouter>
@@ -41,9 +43,11 @@ const mapStateToProps = (
   state: RootState
 ): {
   loading: boolean
+  postUpdateLoading: boolean
   postDeleteLoading: boolean
 } => ({
-  loading: state.posts.loading.default,
+  loading: state.posts.loading.getData,
+  postUpdateLoading: state.posts.loading.postUpdate,
   postDeleteLoading: state.posts.loading.postDelete,
 })
 
