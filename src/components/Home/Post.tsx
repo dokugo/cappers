@@ -17,7 +17,7 @@ const PostItem: FC<Props> = ({ post, deletePost }) => {
         <Id>{post.id}</Id>
       </IdBox>
       <UserBox>
-        <User>{post.user?.name}</User>
+        <User>{post.userName}</User>
       </UserBox>
       <TitleBox>
         <StyledRouterLink to={`/post/${post.id}`}>

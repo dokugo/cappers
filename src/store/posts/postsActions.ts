@@ -38,7 +38,7 @@ export const getData = () => async (
 
     const data = posts.map(post => {
       const user = users.find(user => user.id === post.userId)
-      return { ...post, user }
+      return { ...post, userName: user?.name }
     })
 
     dispatch({
