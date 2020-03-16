@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import styled from 'styled-components/macro'
 
@@ -19,6 +19,20 @@ const Search: FC<Props> = ({ searchText }) => {
     searchText('')
   }
 
+  const handleEscKey = (event: any): void | false => {
+    if (event.key === 'Escape') {
+      if (event.target.classList.contains('Search')) {
+        setState('')
+        searchText('')
+      }
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleEscKey)
+    return (): void => document.removeEventListener('keydown', handleEscKey)
+  })
+
   return (
     <Container>
       <InputBox>
@@ -27,6 +41,7 @@ const Search: FC<Props> = ({ searchText }) => {
           type="text"
           placeholder="Search"
           value={state}
+          className="Search"
         />
         <DeleteButtonBox show={state.length ? true : false}>
           <DeleteButton onClick={handleClick}>✕</DeleteButton>
