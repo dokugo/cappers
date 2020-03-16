@@ -6,14 +6,26 @@ module.exports = {
     "prettier/@typescript-eslint",
     "plugin:prettier/recommended"
   ],
-  plugins: ["react", "@typescript-eslint", "prettier"],
+  plugins: [
+    "simple-import-sort",
+    "react",
+    "@typescript-eslint",
+    "prettier",
+  ],
   env: {
     "browser": true,
     "jasmine": true,
     "jest": true
   },
   rules: {
-    "prettier/prettier": ["error", { "singleQuote": true }]
+    "prettier/prettier": ["error", { "singleQuote": true }],
+    "react/prop-types": 0,
+    "simple-import-sort/sort": "error",
+    // "@typescript-eslint/no-explicit-any": 0,
+    // "@typescript-eslint/explicit-function-return-type": 0,
+  },
+  globals: {
+    "process": true
   },
   settings: {
     "react": {

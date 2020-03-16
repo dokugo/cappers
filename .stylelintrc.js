@@ -8,7 +8,9 @@ module.exports = {
   ],
   rules: {
     'a11y/no-outline-none': null,
-    'property-no-vendor-prefix': null,
     'a11y/media-prefers-reduced-motion': null,
+    'a11y/selector-pseudo-class-focus': null,
+    'property-no-vendor-prefix': null,
+    'value-no-vendor-prefix': null,
   },
 }
