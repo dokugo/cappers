@@ -14,7 +14,12 @@ import { RootState } from './store/rootReducer'
 
 NProgress.configure({ showSpinner: false })
 
-const App: FC<Props> = ({ loading, postDeleteLoading, postUpdateLoading }) => {
+const App: FC<Props> = ({
+  getData,
+  loading,
+  postDeleteLoading,
+  postUpdateLoading,
+}) => {
   useEffect(() => {
     getData()
   }, [getData])
