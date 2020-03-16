@@ -57,7 +57,6 @@ export const updatePost = (post: Pick<Post, 'body' | 'title' | 'id'>) => async (
 
   await fetch(`${API_ENDPOINT}/posts/${post.id}`, {
     method: 'PATCH',
-    mode: 'no-cors',
     body: JSON.stringify({ title: post.title, body: post.body }),
     headers: { 'Content-type': 'application/json; charset=UTF-8' },
   })
