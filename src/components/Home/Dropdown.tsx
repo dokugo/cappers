@@ -94,11 +94,11 @@ type Props = ConnectedProps<typeof connector>
 export default connector(Dropdown)
 
 const FilterItem = styled.span`
-  cursor: pointer;
-  user-select: none;
-  font-weight: 700;
   color: rgb(170, 170, 170);
+  cursor: pointer;
+  font-weight: 700;
   transition: color 0.15s ease-in-out;
+  user-select: none;
   &:hover {
     color: inherit;
   }
@@ -108,8 +108,8 @@ const FilterItem = styled.span`
 `
 
 const UserFilterItem = styled(FilterItem)`
-  position: relative;
   margin-right: 10px;
+  position: relative;
 `
 
 const DeleteButtonBox = styled.section<{ show: boolean }>`
@@ -120,40 +120,40 @@ const DeleteButtonBox = styled.section<{ show: boolean }>`
 `
 
 const DeleteButton = styled.span`
-  cursor: pointer;
-  margin-top: 2px;
-  user-select: none;
   color: rgb(170, 170, 170);
+  cursor: pointer;
   line-height: 16px;
+  margin-top: 2px;
   transition: color 0.15s ease-in-out;
+  user-select: none;
   &:hover {
     color: rgb(0, 0, 0);
   }
 `
 
 const DropdownContainer = styled.section<{ show: boolean }>`
-  position: absolute;
-  display: ${(props): string => (props.show ? 'block' : 'none')};
-  top: 53px;
-  left: 0px;
   background-color: rgb(247, 249, 250);
   border: 1px solid rgb(219, 227, 231);
   border-radius: 1px;
+  display: ${(props): string => (props.show ? 'block' : 'none')};
+  left: 0px;
+  position: absolute;
+  top: 53px;
 `
 const DropdownItem = styled.span<{ highlight: string | null }>`
-  cursor: pointer;
-  user-select: none;
-  display: block;
-  padding: 10px 15px;
-  width: 100%;
-  box-sizing: border-box;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
   background-color: ${(props): string | null => props.highlight};
+  box-sizing: border-box;
+  cursor: pointer;
+  display: block;
+  overflow: hidden;
+  padding: 10px 15px;
+  text-overflow: ellipsis;
+  user-select: none;
+  white-space: nowrap;
+  width: 100%;
   &:hover {
-    background-color: rgba(60, 120, 180, 0.1);
     background-color: ${(props): string =>
       props.highlight || 'rgba(60, 120, 180, 0.1)'};
+    background-color: rgba(60, 120, 180, 0.1);
   }
 `

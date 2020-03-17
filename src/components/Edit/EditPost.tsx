@@ -88,17 +88,17 @@ type Props = ConnectedProps<typeof connector>
 export default connector(EditPost)
 
 const Container = styled.article`
-  display: flex;
-  box-sizing: border-box;
-  flex-direction: column;
-  width: 640px;
-  color: rgb(75, 75, 75);
-  font-size: 16px;
-  padding: 20px 30px;
   background: rgba(255, 255, 255, 0.75);
   border-radius: 3px;
   box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 12px 0px,
     rgb(219, 227, 231) 0px 0px 0px 1px inset;
+  box-sizing: border-box;
+  color: rgb(75, 75, 75);
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  padding: 20px 30px;
+  width: 640px;
   @media only screen and (max-width: 769px) {
     width: 100%;
   }
@@ -109,40 +109,40 @@ const Form = styled.form``
 const InputField = styled.div`
   display: flex;
   flex-direction: column;
-  min-width: 100%;
   margin-bottom: 20px;
+  min-width: 100%;
 `
 
 const Label = styled.label`
   display: block;
-  font-weight: 400;
   font-size: 16px;
-  position: relative;
+  font-weight: 400;
   height: 20px;
-  margin-bottom: 10px;
   line-height: 20px;
+  margin-bottom: 10px;
+  position: relative;
   width: fit-content;
 `
 
 const Input = styled.input`
+  background-color: rgb(247, 249, 250);
+  border: 1px solid rgb(219, 227, 231);
+  border-radius: 3px;
+  box-sizing: border-box;
+  color: rgb(83, 97, 113);
+  display: block;
   font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
     'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   font-size: 16px;
   font-weight: 600;
-  color: rgb(83, 97, 113);
-  border: 1px solid rgb(219, 227, 231);
-  background-color: rgb(247, 249, 250);
-  width: 100%;
   height: 40px;
   line-height: 40px;
-  padding: 5px 10px;
-  box-sizing: border-box;
-  display: block;
-  border-radius: 3px;
-  transition: 0.15s ease-in-out;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   overflow: hidden;
+  padding: 5px 10px;
+  text-overflow: ellipsis;
+  transition: 0.15s ease-in-out;
+  white-space: nowrap;
+  width: 100%;
   &:focus {
     background-color: rgba(60, 120, 180, 0.1);
     border: 1px solid rgb(60, 120, 180);
@@ -151,22 +151,22 @@ const Input = styled.input`
 `
 
 const Textarea = styled.textarea`
+  background-color: rgba(247, 249, 250);
+  border: 1px solid rgb(219, 227, 231);
+  border-radius: 3px;
+  box-sizing: border-box;
+  color: rgb(83, 97, 113);
+  display: block;
   font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
     'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   font-size: 16px;
   font-weight: 600;
-  color: rgb(83, 97, 113);
-  border: 1px solid rgb(219, 227, 231);
-  background-color: rgba(247, 249, 250);
-  width: 100%;
-  padding: 5px 10px;
-  box-sizing: border-box;
-  display: block;
-  border-radius: 3px;
-  transition: border-color 0.15s ease-in-out, background-color 0.15s ease-in-out;
   line-height: 1.5;
-  resize: vertical;
   min-height: 108px;
+  padding: 5px 10px;
+  resize: vertical;
+  transition: border-color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+  width: 100%;
   &:focus {
     background-color: rgba(60, 120, 180, 0.1);
     border-color: rgb(60, 120, 180);
@@ -175,28 +175,28 @@ const Textarea = styled.textarea`
 `
 
 const Button = styled.button`
-  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
-    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   background: rgb(63, 102, 159);
   border: none;
   border-radius: 3px;
-  color: #fff;
-  line-height: 40px;
-  height: 40px;
-  width: 100%;
-  min-width: 100%;
-  font-size: 16px;
-  padding: 0;
   box-sizing: border-box;
-  user-select: none;
-  outline: none;
+  color: #fff;
   cursor: pointer;
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  height: 40px;
+  line-height: 40px;
+  min-width: 100%;
+  outline: none;
+  padding: 0;
+  user-select: none;
+  width: 100%;
   &:focus {
     box-shadow: rgba(63, 102, 159, 0.35) 0px 0px 0px 3px;
   }
   &:active {
-    transform: translateY(1px);
     box-shadow: none;
+    transform: translateY(1px);
   }
 `
 const Error = styled.span`

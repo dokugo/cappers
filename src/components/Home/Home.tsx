@@ -55,7 +55,7 @@ type Props = ConnectedProps<typeof connector>
 export default connector(Home)
 
 const Loading = styled.span`
+  color: rgb(75, 75, 75);
   font-size: 24px;
   margin-top: 50px;
-  color: rgb(75, 75, 75);
 `

@@ -43,14 +43,14 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 export default connector(PostItem)
 
 const Container = styled.article`
-  display: flex;
-  color: rgb(75, 75, 75);
-  font-size: 16px;
   background: rgba(255, 255, 255, 0.75);
   border: 1px solid rgba(0, 0, 0, 0.176);
   border-bottom: none;
-  padding: 10px 15px;
+  color: rgb(75, 75, 75);
+  display: flex;
+  font-size: 16px;
   height: 45px;
+  padding: 10px 15px;
   &:hover {
     background-color: rgba(60, 120, 180, 0.1);
   }
@@ -67,8 +67,8 @@ const Container = styled.article`
 `
 
 const FilterItemBox = styled.div`
-  display: flex;
   align-items: center;
+  display: flex;
   margin-right: 15px;
   @media only screen and (max-width: 405px) {
     margin-right: 7px;
@@ -102,9 +102,9 @@ const UserBox = styled(FilterItemBox)`
 
 const User = styled.span`
   font-weight: 400;
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
 `
 
 const TitleBox = styled(FilterItemBox)`
@@ -130,12 +130,12 @@ const StyledRouterLink = styled(Link)`
 `
 
 const Title = styled.h6`
-  max-width: 200px;
   font-size: 16px;
   margin: 0;
+  max-width: 200px;
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
   @media only screen and (max-width: 769px) {
     max-width: 125px;
   }
@@ -163,20 +163,20 @@ const BodyBox = styled(FilterItemBox)`
 `
 
 const Body = styled.p`
-  margin: 0;
-  text-overflow: ellipsis;
-  white-space: initial;
-  overflow: hidden;
-  display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: initial;
 `
 
 const DeleteButtonBox = styled(FilterItemBox)`
   justify-content: center;
-  min-width: 40px;
   margin-left: auto;
   margin-right: 0;
+  min-width: 40px;
   @media only screen and (max-width: 405px) {
     margin-right: 0;
     min-width: 30px;
@@ -184,11 +184,11 @@ const DeleteButtonBox = styled(FilterItemBox)`
 `
 
 const DeleteButton = styled.span`
-  cursor: pointer;
-  user-select: none;
   color: rgb(170, 170, 170);
+  cursor: pointer;
   line-height: 16px;
   transition: color 0.15s ease-in-out;
+  user-select: none;
   &:hover {
     color: rgb(0, 0, 0);
   }

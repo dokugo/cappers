@@ -8,6 +8,7 @@ module.exports = {
   ],
   plugins: [
     "simple-import-sort",
+    "better-styled-components",
     "react",
     "@typescript-eslint",
     "prettier",
@@ -21,6 +22,7 @@ module.exports = {
     "prettier/prettier": ["error", { "singleQuote": true }],
     "react/prop-types": 0,
     "simple-import-sort/sort": "error",
+    "better-styled-components/sort-declarations-alphabetically": 2,
     // "@typescript-eslint/no-explicit-any": 0,
     // "@typescript-eslint/explicit-function-return-type": 0,
   },
