@@ -35,9 +35,9 @@ const Filter: FC<Props> = ({
       <TitleBox>
         <FilterItem onClick={handleSortByTitle}>Title</FilterItem>
       </TitleBox>
-      <TextBox>
+      <BodyBox>
         <FilterItem onClick={handleSortByBody}>Body</FilterItem>
-      </TextBox>
+      </BodyBox>
     </Container>
   )
 }
@@ -70,36 +70,57 @@ const Container = styled.section`
   padding: 10px 15px;
   box-sizing: border-box;
   height: 65px;
+  @media only screen and (max-width: 405px) {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
 `
-const IdBox = styled.section`
+const FilterItemBox = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 30px;
-  min-width: 30px;
   margin-right: 15px;
-`
-const UserBox = styled.section`
-  display: flex;
-  align-items: center;
-  min-width: 150px;
-  width: 150px;
-  margin-right: 15px;
-  position: relative;
+  @media only screen and (max-width: 405px) {
+    margin-right: 7px;
+  }
 `
 
-const TitleBox = styled.section`
+const IdBox = styled(FilterItemBox)`
+  justify-content: center;
+  min-width: 30px;
+  @media only screen and (max-width: 405px) {
+    min-width: 20px;
+  }
+`
+const UserBox = styled(FilterItemBox)`
   display: flex;
   align-items: center;
-  margin-right: 15px;
+  min-width: 125px;
+  position: relative;
+  @media only screen and (max-width: 769px) {
+    min-width: 75px;
+  }
+  @media only screen and (max-width: 600px) {
+    min-width: 50px;
+  }
+  @media only screen and (max-width: 405px) {
+    min-width: 40px;
+  }
+`
+
+const TitleBox = styled(FilterItemBox)`
   min-width: 200px;
+  @media only screen and (max-width: 769px) {
+    min-width: 125px;
+  }
+  @media only screen and (max-width: 600px) {
+    min-width: 65px;
+  }
+  @media only screen and (max-width: 405px) {
+    min-width: 50px;
+  }
 `
-const TextBox = styled.section`
-  display: flex;
-  align-items: center;
-  line-height: 1.35em;
-  min-height: 2.7em;
-`
+const BodyBox = styled(FilterItemBox)``
+
 const FilterItem = styled.span`
   cursor: pointer;
   user-select: none;

@@ -75,7 +75,7 @@ const Container = styled.section`
   box-sizing: border-box;
   height: 65px;
 `
-const InputBox = styled.section`
+const InputBox = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
@@ -101,6 +101,9 @@ const Input = styled.input`
     background-color: rgba(60, 120, 180, 0.1);
     border: 1px solid rgb(60, 120, 180);
     outline: 0;
+  }
+  @media only screen and (max-width: 405px) {
+    font-size: 14px;
   }
 `
 

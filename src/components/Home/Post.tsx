@@ -24,9 +24,9 @@ const PostItem: FC<Props> = ({ post, deletePost }) => {
           <Title>{post.title}</Title>
         </StyledRouterLink>
       </TitleBox>
-      <TextBox>
-        <Text>{post.body}</Text>
-      </TextBox>
+      <BodyBox>
+        <Body>{post.body}</Body>
+      </BodyBox>
       <DeleteButtonBox>
         <DeleteButton onClick={handleClick}>✕</DeleteButton>
       </DeleteButtonBox>
@@ -60,27 +60,44 @@ const Container = styled.article`
   &:first-of-type {
     border-top: none;
   }
+  @media only screen and (max-width: 405px) {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
 `
 
-const IdBox = styled.section`
+const FilterItemBox = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 30px;
-  min-width: 30px;
   margin-right: 15px;
+  @media only screen and (max-width: 405px) {
+    margin-right: 7px;
+  }
+`
+
+const IdBox = styled(FilterItemBox)`
+  justify-content: center;
+  min-width: 30px;
+  @media only screen and (max-width: 405px) {
+    min-width: 20px;
+  }
 `
 
 const Id = styled.span`
   color: rgb(140, 140, 140);
 `
 
-const UserBox = styled.section`
-  display: flex;
-  align-items: center;
-  min-width: 150px;
-  width: 150px;
-  margin-right: 15px;
+const UserBox = styled(FilterItemBox)`
+  min-width: 125px;
+  @media only screen and (max-width: 769px) {
+    min-width: 75px;
+  }
+  @media only screen and (max-width: 600px) {
+    min-width: 50px;
+  }
+  @media only screen and (max-width: 405px) {
+    min-width: 40px;
+  }
 `
 
 const User = styled.span`
@@ -90,11 +107,17 @@ const User = styled.span`
   overflow: hidden;
 `
 
-const TitleBox = styled.section`
-  display: flex;
-  align-items: center;
-  margin-right: 15px;
+const TitleBox = styled(FilterItemBox)`
   min-width: 200px;
+  @media only screen and (max-width: 769px) {
+    min-width: 125px;
+  }
+  @media only screen and (max-width: 600px) {
+    min-width: 65px;
+  }
+  @media only screen and (max-width: 405px) {
+    min-width: 50px;
+  }
 `
 
 const StyledRouterLink = styled(Link)`
@@ -113,16 +136,33 @@ const Title = styled.h6`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  @media only screen and (max-width: 769px) {
+    max-width: 125px;
+  }
+  @media only screen and (max-width: 600px) {
+    max-width: 65px;
+  }
+  @media only screen and (max-width: 405px) {
+    max-width: 50px;
+  }
 `
 
-const TextBox = styled.section`
-  display: flex;
-  align-items: center;
+const BodyBox = styled(FilterItemBox)`
   line-height: 1.35em;
   min-height: 2.7em;
+  min-width: 250px;
+  @media only screen and (max-width: 769px) {
+    min-width: 150px;
+  }
+  @media only screen and (max-width: 769px) {
+    min-width: 100px;
+  }
+  @media only screen and (max-width: 405px) {
+    margin-right: 0;
+  }
 `
 
-const Text = styled.p`
+const Body = styled.p`
   margin: 0;
   text-overflow: ellipsis;
   white-space: initial;
@@ -132,13 +172,15 @@ const Text = styled.p`
   -webkit-line-clamp: 2;
 `
 
-const DeleteButtonBox = styled.section`
-  display: flex;
-  align-items: center;
+const DeleteButtonBox = styled(FilterItemBox)`
   justify-content: center;
-  width: 40px;
   min-width: 40px;
   margin-left: auto;
+  margin-right: 0;
+  @media only screen and (max-width: 405px) {
+    margin-right: 0;
+    min-width: 30px;
+  }
 `
 
 const DeleteButton = styled.span`

@@ -55,10 +55,10 @@ const Dropdown: FC<Props> = ({ users, filterByUser, filterId }) => {
       <DeleteButtonBox show={filterId ? true : false}>
         <DeleteButton onClick={handleClearFilterClick}>✕</DeleteButton>
       </DeleteButtonBox>
-      <Container show={showDropdown}>
+      <DropdownContainer show={showDropdown}>
         {users?.map((element: User) => {
           return (
-            <Item
+            <DropdownItem
               key={element.id}
               onClick={(): void => handleDropdownItemClick(element.id)}
               highlight={
@@ -67,10 +67,10 @@ const Dropdown: FC<Props> = ({ users, filterByUser, filterId }) => {
               className="Item"
             >
               {element.name}
-            </Item>
+            </DropdownItem>
           )
         })}
-      </Container>
+      </DropdownContainer>
     </>
   )
 }
@@ -102,6 +102,9 @@ const FilterItem = styled.span`
   &:hover {
     color: inherit;
   }
+  @media only screen and (max-width: 405px) {
+    font-size: 14px;
+  }
 `
 
 const UserFilterItem = styled(FilterItem)`
@@ -111,11 +114,14 @@ const UserFilterItem = styled(FilterItem)`
 
 const DeleteButtonBox = styled.section<{ show: boolean }>`
   display: ${(props): string => (props.show ? 'flex' : 'none')};
+  @media only screen and (max-width: 405px) {
+    display: none;
+  }
 `
 
 const DeleteButton = styled.span`
-  margin-top: 2px;
   cursor: pointer;
+  margin-top: 2px;
   user-select: none;
   color: rgb(170, 170, 170);
   line-height: 16px;
@@ -125,7 +131,7 @@ const DeleteButton = styled.span`
   }
 `
 
-const Container = styled.section<{ show: boolean }>`
+const DropdownContainer = styled.section<{ show: boolean }>`
   position: absolute;
   display: ${(props): string => (props.show ? 'block' : 'none')};
   top: 53px;
@@ -134,7 +140,7 @@ const Container = styled.section<{ show: boolean }>`
   border: 1px solid rgb(219, 227, 231);
   border-radius: 1px;
 `
-const Item = styled.span<{ highlight: string | null }>`
+const DropdownItem = styled.span<{ highlight: string | null }>`
   cursor: pointer;
   user-select: none;
   display: block;
