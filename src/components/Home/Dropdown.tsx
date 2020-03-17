@@ -55,10 +55,10 @@ const Dropdown: FC<Props> = ({ users, filterByUser, filterId }) => {
       <DeleteButtonBox show={filterId ? true : false}>
         <DeleteButton onClick={handleClearFilterClick}>✕</DeleteButton>
       </DeleteButtonBox>
-      <Container show={showDropdown}>
+      <DropdownContainer show={showDropdown}>
         {users?.map((element: User) => {
           return (
-            <Item
+            <DropdownItem
               key={element.id}
               onClick={(): void => handleDropdownItemClick(element.id)}
               highlight={
@@ -67,10 +67,10 @@ const Dropdown: FC<Props> = ({ users, filterByUser, filterId }) => {
               className="Item"
             >
               {element.name}
-            </Item>
+            </DropdownItem>
           )
         })}
-      </Container>
+      </DropdownContainer>
     </>
   )
 }
@@ -94,60 +94,66 @@ type Props = ConnectedProps<typeof connector>
 export default connector(Dropdown)
 
 const FilterItem = styled.span`
-  cursor: pointer;
-  user-select: none;
-  font-weight: 700;
   color: rgb(170, 170, 170);
+  cursor: pointer;
+  font-weight: 700;
   transition: color 0.15s ease-in-out;
+  user-select: none;
   &:hover {
     color: inherit;
+  }
+  @media only screen and (max-width: 405px) {
+    font-size: 14px;
   }
 `
 
 const UserFilterItem = styled(FilterItem)`
-  position: relative;
   margin-right: 10px;
+  position: relative;
 `
 
 const DeleteButtonBox = styled.section<{ show: boolean }>`
   display: ${(props): string => (props.show ? 'flex' : 'none')};
+  @media only screen and (max-width: 405px) {
+    display: none;
+  }
 `
 
 const DeleteButton = styled.span`
-  margin-top: 2px;
-  cursor: pointer;
-  user-select: none;
   color: rgb(170, 170, 170);
+  cursor: pointer;
   line-height: 16px;
+  margin-top: 2px;
   transition: color 0.15s ease-in-out;
+  user-select: none;
   &:hover {
     color: rgb(0, 0, 0);
   }
 `
 
-const Container = styled.section<{ show: boolean }>`
-  position: absolute;
-  display: ${(props): string => (props.show ? 'block' : 'none')};
-  top: 53px;
-  left: 0px;
+const DropdownContainer = styled.section<{ show: boolean }>`
   background-color: rgb(247, 249, 250);
   border: 1px solid rgb(219, 227, 231);
   border-radius: 1px;
+  display: ${(props): string => (props.show ? 'block' : 'none')};
+  left: 0px;
+  position: absolute;
+  top: 53px;
 `
-const Item = styled.span<{ highlight: string | null }>`
-  cursor: pointer;
-  user-select: none;
-  display: block;
-  padding: 10px 15px;
-  width: 100%;
-  box-sizing: border-box;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+const DropdownItem = styled.span<{ highlight: string | null }>`
   background-color: ${(props): string | null => props.highlight};
+  box-sizing: border-box;
+  cursor: pointer;
+  display: block;
+  overflow: hidden;
+  padding: 10px 15px;
+  text-overflow: ellipsis;
+  user-select: none;
+  white-space: nowrap;
+  width: 100%;
   &:hover {
-    background-color: rgba(60, 120, 180, 0.1);
     background-color: ${(props): string =>
       props.highlight || 'rgba(60, 120, 180, 0.1)'};
+    background-color: rgba(60, 120, 180, 0.1);
   }
 `

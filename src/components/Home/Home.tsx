@@ -27,7 +27,7 @@ const Home: FC<Props> = ({ loading, error, data, filterId, searchText }) => {
       <Search />
       <Filter />
       {loading ? <Loading>Loading...</Loading> : <PostList posts={posts} />}
-      <Error show={error ? true : false}>{error}</Error>
+      {error ? <Loading>{error}</Loading> : null}
     </>
   )
 }
@@ -55,10 +55,7 @@ type Props = ConnectedProps<typeof connector>
 export default connector(Home)
 
 const Loading = styled.span`
+  color: rgb(75, 75, 75);
   font-size: 24px;
   margin-top: 50px;
-  color: rgb(75, 75, 75);
-`
-const Error = styled(Loading)<{ show: boolean }>`
-  display: ${(props): string => (props.show ? 'block' : 'none')};
 `

@@ -24,9 +24,9 @@ const PostItem: FC<Props> = ({ post, deletePost }) => {
           <Title>{post.title}</Title>
         </StyledRouterLink>
       </TitleBox>
-      <TextBox>
-        <Text>{post.body}</Text>
-      </TextBox>
+      <BodyBox>
+        <Body>{post.body}</Body>
+      </BodyBox>
       <DeleteButtonBox>
         <DeleteButton onClick={handleClick}>✕</DeleteButton>
       </DeleteButtonBox>
@@ -43,14 +43,14 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 export default connector(PostItem)
 
 const Container = styled.article`
-  display: flex;
-  color: rgb(75, 75, 75);
-  font-size: 16px;
   background: rgba(255, 255, 255, 0.75);
   border: 1px solid rgba(0, 0, 0, 0.176);
   border-bottom: none;
-  padding: 10px 15px;
+  color: rgb(75, 75, 75);
+  display: flex;
+  font-size: 16px;
   height: 45px;
+  padding: 10px 15px;
   &:hover {
     background-color: rgba(60, 120, 180, 0.1);
   }
@@ -60,41 +60,64 @@ const Container = styled.article`
   &:first-of-type {
     border-top: none;
   }
+  @media only screen and (max-width: 405px) {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
 `
 
-const IdBox = styled.section`
-  display: flex;
+const FilterItemBox = styled.div`
   align-items: center;
-  justify-content: center;
-  width: 30px;
-  min-width: 30px;
+  display: flex;
   margin-right: 15px;
+  @media only screen and (max-width: 405px) {
+    margin-right: 7px;
+  }
+`
+
+const IdBox = styled(FilterItemBox)`
+  justify-content: center;
+  min-width: 30px;
+  @media only screen and (max-width: 405px) {
+    min-width: 20px;
+  }
 `
 
 const Id = styled.span`
   color: rgb(140, 140, 140);
 `
 
-const UserBox = styled.section`
-  display: flex;
-  align-items: center;
-  min-width: 150px;
-  width: 150px;
-  margin-right: 15px;
+const UserBox = styled(FilterItemBox)`
+  min-width: 125px;
+  @media only screen and (max-width: 769px) {
+    min-width: 75px;
+  }
+  @media only screen and (max-width: 600px) {
+    min-width: 50px;
+  }
+  @media only screen and (max-width: 405px) {
+    min-width: 40px;
+  }
 `
 
 const User = styled.span`
   font-weight: 400;
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
 `
 
-const TitleBox = styled.section`
-  display: flex;
-  align-items: center;
-  margin-right: 15px;
+const TitleBox = styled(FilterItemBox)`
   min-width: 200px;
+  @media only screen and (max-width: 769px) {
+    min-width: 125px;
+  }
+  @media only screen and (max-width: 600px) {
+    min-width: 65px;
+  }
+  @media only screen and (max-width: 405px) {
+    min-width: 50px;
+  }
 `
 
 const StyledRouterLink = styled(Link)`
@@ -107,46 +130,65 @@ const StyledRouterLink = styled(Link)`
 `
 
 const Title = styled.h6`
-  max-width: 200px;
   font-size: 16px;
   margin: 0;
+  max-width: 200px;
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
+  @media only screen and (max-width: 769px) {
+    max-width: 125px;
+  }
+  @media only screen and (max-width: 600px) {
+    max-width: 65px;
+  }
+  @media only screen and (max-width: 405px) {
+    max-width: 50px;
+  }
 `
 
-const TextBox = styled.section`
-  display: flex;
-  align-items: center;
+const BodyBox = styled(FilterItemBox)`
   line-height: 1.35em;
   min-height: 2.7em;
+  min-width: 250px;
+  @media only screen and (max-width: 769px) {
+    min-width: 150px;
+  }
+  @media only screen and (max-width: 769px) {
+    min-width: 100px;
+  }
+  @media only screen and (max-width: 405px) {
+    margin-right: 0;
+  }
 `
 
-const Text = styled.p`
-  margin: 0;
-  text-overflow: ellipsis;
-  white-space: initial;
-  overflow: hidden;
-  display: -webkit-box;
+const Body = styled.p`
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: initial;
 `
 
-const DeleteButtonBox = styled.section`
-  display: flex;
-  align-items: center;
+const DeleteButtonBox = styled(FilterItemBox)`
   justify-content: center;
-  width: 40px;
-  min-width: 40px;
   margin-left: auto;
+  margin-right: 0;
+  min-width: 40px;
+  @media only screen and (max-width: 405px) {
+    margin-right: 0;
+    min-width: 30px;
+  }
 `
 
 const DeleteButton = styled.span`
-  cursor: pointer;
-  user-select: none;
   color: rgb(170, 170, 170);
+  cursor: pointer;
   line-height: 16px;
   transition: color 0.15s ease-in-out;
+  user-select: none;
   &:hover {
     color: rgb(0, 0, 0);
   }

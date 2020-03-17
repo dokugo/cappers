@@ -19,6 +19,7 @@ const Search: FC<Props> = ({ searchText }) => {
     searchText('')
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleEscKey = (event: any): void | false => {
     if (event.key === 'Escape') {
       if (event.target.classList.contains('Search')) {
@@ -64,43 +65,46 @@ type Props = ConnectedProps<typeof connector>
 export default connector(Search)
 
 const Container = styled.section`
-  display: flex;
-  color: rgba(0, 0, 0, 0.7);
-  font-size: 16px;
   background: rgba(255, 255, 255, 0.75);
-  width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.176);
   border-bottom: none;
-  padding: 10px 15px;
   box-sizing: border-box;
-  height: 65px;
-`
-const InputBox = styled.section`
+  color: rgba(0, 0, 0, 0.7);
   display: flex;
-  align-items: center;
+  font-size: 16px;
+  height: 65px;
+  padding: 10px 15px;
   width: 100%;
+`
+const InputBox = styled.div`
+  align-items: center;
+  display: flex;
   position: relative;
+  width: 100%;
 `
 const Input = styled.input`
+  background-color: rgb(247, 249, 250);
+  border: 1px solid rgb(219, 227, 231);
+  border-radius: 3px;
+  box-sizing: border-box;
+  color: rgb(83, 97, 113);
+  display: block;
   font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
     'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   font-size: 16px;
   font-weight: 600;
-  color: rgb(83, 97, 113);
-  border: 1px solid rgb(219, 227, 231);
-  background-color: rgb(247, 249, 250);
-  width: 100%;
   height: 40px;
   line-height: 40px;
   padding: 5px 10px;
-  box-sizing: border-box;
-  display: block;
-  border-radius: 3px;
   transition: 0.15s ease-in-out;
+  width: 100%;
   &:focus {
     background-color: rgba(60, 120, 180, 0.1);
     border: 1px solid rgb(60, 120, 180);
     outline: 0;
+  }
+  @media only screen and (max-width: 405px) {
+    font-size: 14px;
   }
 `
 
@@ -111,11 +115,11 @@ const DeleteButtonBox = styled.section<{ show: boolean }>`
 `
 
 const DeleteButton = styled.span`
-  cursor: pointer;
-  user-select: none;
   color: rgb(170, 170, 170);
+  cursor: pointer;
   line-height: 16px;
   transition: color 0.15s ease-in-out;
+  user-select: none;
   &:hover {
     color: rgb(0, 0, 0);
   }

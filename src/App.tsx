@@ -79,18 +79,18 @@ const Title = styled.h1`
 `
 
 const Main = styled.main`
-  padding: 0 20px;
-  margin: 50px auto;
-  max-width: 980px;
+  align-items: center;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  margin: 50px auto;
+  max-width: 980px;
+  padding: 0 20px;
 `
 const StyledRouterLink = styled(Link)`
+  color: rgb(75, 75, 75);
   margin-bottom: 50px;
   text-decoration: none;
-  color: rgb(75, 75, 75);
   transition: color 0.15s ease-in-out;
   &:hover {
     color: rgb(56, 151, 240);
