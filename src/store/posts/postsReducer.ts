@@ -36,15 +36,15 @@ function postsReducer(state: State = initialState, action: Actions): State {
     case ActionTypes.DATA_LOAD_START:
       return {
         ...state,
-        loading: { ...state.loading, getData: true },
         error: null,
+        loading: { ...state.loading, getData: true },
       }
 
     case ActionTypes.DATA_LOAD_SUCCESS:
       return {
         ...state,
-        loading: { ...state.loading, getData: false },
         error: null,
+        loading: { ...state.loading, getData: false },
         data: action.payload.data,
         users: action.payload.users,
       }
@@ -52,8 +52,8 @@ function postsReducer(state: State = initialState, action: Actions): State {
     case ActionTypes.DATA_LOAD_ERROR:
       return {
         ...state,
-        loading: { ...state.loading, getData: false },
         error: action.payload,
+        loading: { ...state.loading, getData: false },
       }
 
     // POST UPDATE
@@ -61,15 +61,15 @@ function postsReducer(state: State = initialState, action: Actions): State {
     case ActionTypes.POST_UPDATE_START:
       return {
         ...state,
-        loading: { ...state.loading, postUpdate: true },
         error: null,
+        loading: { ...state.loading, postUpdate: true },
       }
 
     case ActionTypes.POST_UPDATE_SUCCESS:
       return {
         ...state,
-        loading: { ...state.loading, postUpdate: false },
         error: null,
+        loading: { ...state.loading, postUpdate: false },
         data: [
           ...state.data.map(element =>
             element.id === action.payload.id
@@ -86,23 +86,23 @@ function postsReducer(state: State = initialState, action: Actions): State {
     case ActionTypes.POST_UPDATE_ERROR:
       return {
         ...state,
-        loading: { ...state.loading, postUpdate: false },
         error: action.payload,
+        loading: { ...state.loading, postUpdate: false },
       }
 
     // POST DELETE
     case ActionTypes.POST_DELETE_START:
       return {
         ...state,
-        loading: { ...state.loading, postDelete: true },
         error: null,
+        loading: { ...state.loading, postDelete: true },
       }
 
     case ActionTypes.POST_DELETE_SUCCESS:
       return {
         ...state,
-        loading: { ...state.loading, postDelete: false },
         error: null,
+        loading: { ...state.loading, postDelete: false },
         data: [
           ...state.data.filter(element => {
             return element.id !== action.payload
@@ -113,8 +113,8 @@ function postsReducer(state: State = initialState, action: Actions): State {
     case ActionTypes.POST_DELETE_ERROR:
       return {
         ...state,
-        loading: { ...state.loading, postDelete: false },
         error: action.payload,
+        loading: { ...state.loading, postDelete: false },
       }
 
     // SORT, FILTER, SEARCH

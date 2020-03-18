@@ -18,7 +18,7 @@ const PostList: FC<Props> = ({ posts }) => {
   )
 }
 
-export default PostList
+export default React.memo(PostList)
 
 const Container = styled.section`
   width: 100%;
