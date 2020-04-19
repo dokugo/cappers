@@ -1,3 +1,5 @@
+###### Please note that the jsonplaceholder API may be slow to respond.
+
 ### Тестовое задание на React
 
 Получить список постов, используя API https://jsonplaceholder.typicode.com/posts
