@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import React, { FC, useEffect, useRef, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import styled from 'styled-components/macro'
@@ -13,20 +11,22 @@ const Dropdown: FC<Props> = ({ users, filterByUser, filterId }) => {
 
   const dropdownHead = useRef<HTMLSpanElement>(null)
 
-  const handleInsideClick = (event: any): void => {
-    if (event.target.classList.contains('Item')) return
+  const handleInsideClick = (event: React.MouseEvent<EventTarget>): void => {
+    const { classList } = event.target as HTMLSpanElement
+    if (classList.contains('Item')) return
     setShowDropdown(!showDropdown)
   }
 
-  const handleOutsideClick = (event: any): void => {
-    if (dropdownHead?.current?.contains(event.target)) return
-    if (event.target.classList.contains('Item')) return
-
+  const handleOutsideClick = (event: MouseEvent): void => {
+    const { classList } = event.target as HTMLElement
+    if (dropdownHead?.current?.contains(event.target as Node)) return
+    if (classList.contains('Item')) return
     setShowDropdown(false)
   }
 
-  const handleOutsideKey = (event: any): void | false =>
-    event.key === 'Escape' && setShowDropdown(false)
+  const handleOutsideKey = (event: KeyboardEvent): void => {
+    if (event.key === 'Escape') setShowDropdown(false)
+  }
 
   useEffect(() => {
     if (showDropdown) {
@@ -36,6 +36,7 @@ const Dropdown: FC<Props> = ({ users, filterByUser, filterId }) => {
       document.removeEventListener('mousedown', handleOutsideClick)
       document.removeEventListener('keydown', handleOutsideKey)
     }
+
     return (): void => {
       document.removeEventListener('mousedown', handleOutsideClick)
       document.removeEventListener('keydown', handleOutsideKey)
