@@ -19,13 +19,14 @@ const Search: FC<Props> = ({ searchText }) => {
     searchText('')
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleEscKey = (event: any): void | false => {
-    if (event.key === 'Escape') {
-      if (event.target.classList.contains('Search')) {
-        setState('')
-        searchText('')
-      }
+  const handleEscKey = (event: KeyboardEvent): void | false => {
+    if (state === '') return
+
+    const { classList } = event.target as HTMLElement
+
+    if (event.key === 'Escape' && classList.contains('Search')) {
+      setState('')
+      searchText('')
     }
   }
 
