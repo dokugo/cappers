@@ -170,11 +170,11 @@ export const filterByUser = (id: number | null = null) => (
   })
 }
 
-export const searchText = (text: string) => (
+export const searchByText = (text: string) => (
   dispatch: ThunkDispatch<RootState, undefined, Actions>
 ): void => {
   dispatch({
-    type: ActionTypes.POSTS_SEARCH_TEXT,
+    type: ActionTypes.POSTS_SEARCH_BY_TEXT,
     payload: text.toLowerCase(),
   })
 }

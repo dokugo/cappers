@@ -146,7 +146,7 @@ function postsReducer(state: State = initialState, action: Actions): State {
         filterId: action.payload,
       }
 
-    case ActionTypes.POSTS_SEARCH_TEXT:
+    case ActionTypes.POSTS_SEARCH_BY_TEXT:
       return {
         ...state,
         searchText: action.payload,

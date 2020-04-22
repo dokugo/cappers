@@ -1,33 +1,20 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import styled from 'styled-components/macro'
 
-import { searchText } from '../../store/posts/postsActions'
+import { searchByText } from '../../store/posts/postsActions'
 import { RootState } from '../../store/rootReducer'
-import { Sort } from '../../types'
 
-const Search: FC<Props> = ({ searchText }) => {
-  const [state, setState] = useState<string>('')
+const Search: FC<Props> = ({ searchText, searchByText }) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void =>
+    searchByText(event.target.value)
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    setState(event.target.value)
-    searchText(event.target.value)
-  }
-
-  const handleClick = (): void => {
-    setState('')
-    searchText('')
-  }
+  const handleClick = (): void => searchByText('')
 
   const handleEscKey = (event: KeyboardEvent): void | false => {
-    if (state === '') return
-
+    if (searchText === '') return
     const { classList } = event.target as HTMLElement
-
-    if (event.key === 'Escape' && classList.contains('Search')) {
-      setState('')
-      searchText('')
-    }
+    if (event.key === 'Escape' && classList.contains('Search')) searchByText('')
   }
 
   useEffect(() => {
@@ -42,10 +29,10 @@ const Search: FC<Props> = ({ searchText }) => {
           onChange={handleChange}
           type="text"
           placeholder="Search"
-          value={state}
+          value={searchText}
           className="Search"
         />
-        <DeleteButtonBox show={state.length ? true : false}>
+        <DeleteButtonBox show={searchText.length ? true : false}>
           <DeleteButton onClick={handleClick}>✕</DeleteButton>
         </DeleteButtonBox>
       </InputBox>
@@ -53,11 +40,11 @@ const Search: FC<Props> = ({ searchText }) => {
   )
 }
 
-const mapStateToProps = (state: RootState): { sort: Sort } => ({
-  sort: state.posts.sort,
+const mapStateToProps = (state: RootState): { searchText: string } => ({
+  searchText: state.posts.searchText,
 })
 
-const mapDispatchToProps = { searchText }
+const mapDispatchToProps = { searchByText }
 
 const connector = connect(mapStateToProps, mapDispatchToProps)
 

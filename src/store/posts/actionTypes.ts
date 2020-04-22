@@ -17,7 +17,7 @@ enum ActionTypes {
   POSTS_SORT_BY_TITLE = 'POSTS_SORT_BY_TITLE',
   POSTS_SORT_BY_BODY = 'POSTS_SORT_BY_BODY',
   POSTS_FILTER_BY_USER = 'POSTS_FILTER_BY_USER',
-  POSTS_SEARCH_TEXT = 'POSTS_SEARCH_TEXT',
+  POSTS_SEARCH_BY_TEXT = 'POSTS_SEARCH_BY_TEXT',
 }
 
 // DATA LOAD
@@ -72,7 +72,7 @@ type PostDeleteErrorAction = {
 }
 
 type PostsSearchTextAction = {
-  type: typeof ActionTypes.POSTS_SEARCH_TEXT
+  type: typeof ActionTypes.POSTS_SEARCH_BY_TEXT
   payload: string
 }
 
