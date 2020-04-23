@@ -11,7 +11,7 @@ const Search: FC<Props> = ({ searchText, searchByText }) => {
 
   const handleClick = (): void => searchByText('')
 
-  const handleEscKey = (event: KeyboardEvent): void | false => {
+  const handleEscKey = (event: KeyboardEvent): void => {
     if (searchText === '') return
     const { classList } = event.target as HTMLElement
     if (event.key === 'Escape' && classList.contains('Search')) searchByText('')
@@ -90,6 +90,9 @@ const Input = styled.input`
     background-color: rgba(60, 120, 180, 0.1);
     border: 1px solid rgb(60, 120, 180);
     outline: 0;
+  }
+  &::placeholder {
+    color: rgb(170, 170, 170);
   }
   @media only screen and (max-width: 405px) {
     font-size: 14px;

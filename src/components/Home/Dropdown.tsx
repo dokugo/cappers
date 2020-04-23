@@ -153,8 +153,7 @@ const DropdownItem = styled.span<{ highlight: string | null }>`
   white-space: nowrap;
   width: 100%;
   &:hover {
-    background-color: ${(props): string =>
+    background-color: ${(props): string | null =>
       props.highlight || 'rgba(60, 120, 180, 0.1)'};
-    background-color: rgba(60, 120, 180, 0.1);
   }
 `

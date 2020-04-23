@@ -1,10 +1,10 @@
 module.exports = {
   extends: [
     "eslint:recommended",
-    "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:react/recommended",
   ],
   plugins: [
     "simple-import-sort",
@@ -16,7 +16,7 @@ module.exports = {
   env: {
     "browser": true,
     "jasmine": true,
-    "jest": true
+    "jest": true,
   },
   rules: {
     "prettier/prettier": ["error", { "singleQuote": true }],
@@ -27,12 +27,12 @@ module.exports = {
     // "@typescript-eslint/explicit-function-return-type": 0,
   },
   globals: {
-    "process": true
+    "process": true,
   },
   settings: {
     "react": {
       "pragma": "React",
-      "version": "detect"
+      "version": "detect",
     }
   },
   parser: "@typescript-eslint/parser",
