@@ -1,7 +1,4 @@
-import 'nprogress/nprogress.css'
-
-import NProgress from 'nprogress'
-import React, { FC, useEffect } from 'react'
+import React, { FC } from 'react'
 import { hot } from 'react-hot-loader/root'
 import { connect, ConnectedProps } from 'react-redux'
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom'
@@ -11,8 +8,8 @@ import EditPost from './components/Edit/EditPost'
 import Home from './components/Home/Home'
 import { getData } from './store/posts/postsActions'
 import { RootState } from './store/rootReducer'
-
-NProgress.configure({ showSpinner: false })
+import NProgress from './utils/nprogress'
+import useDidMount from './utils/useDidMount'
 
 const App: FC<Props> = ({
   getData,
@@ -20,9 +17,7 @@ const App: FC<Props> = ({
   postDeleteLoading,
   postUpdateLoading,
 }) => {
-  useEffect(() => {
-    getData()
-  }, [getData])
+  useDidMount(() => getData())
 
   loading || postUpdateLoading || postDeleteLoading
     ? NProgress.start()
