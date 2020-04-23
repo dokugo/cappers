@@ -175,6 +175,6 @@ export const searchByText = (text: string) => (
 ): void => {
   dispatch({
     type: ActionTypes.POSTS_SEARCH_BY_TEXT,
-    payload: text.toLowerCase(),
+    payload: text,
   })
 }

@@ -11,7 +11,7 @@ interface State {
   data: Post[]
   users: User[]
   sort: Sort
-  filterId: number | null
+  filterUserId: null | number
   searchText: string
 }
 
@@ -25,7 +25,7 @@ const initialState: State = {
   data: [],
   users: [],
   sort: Sort.ASC,
-  filterId: null,
+  filterUserId: null,
   searchText: '',
 }
 
@@ -143,7 +143,7 @@ function postsReducer(state: State = initialState, action: Actions): State {
     case ActionTypes.POSTS_FILTER_BY_USER:
       return {
         ...state,
-        filterId: action.payload,
+        filterUserId: action.payload,
       }
 
     case ActionTypes.POSTS_SEARCH_BY_TEXT:

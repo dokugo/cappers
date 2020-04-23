@@ -1,3 +1,5 @@
+// for a later usage
+
 import { createSelector } from 'reselect'
 
 import { RootState } from '../rootReducer'
@@ -18,7 +20,7 @@ export const postsSelector = createSelector(getState, state => state.posts.data)
 
 export const filterIdSelector = createSelector(
   getState,
-  state => state.posts.filterId
+  state => state.posts.filterUserId
 )
 
 export const searchTextSelector = createSelector(

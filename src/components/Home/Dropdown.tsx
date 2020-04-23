@@ -6,7 +6,7 @@ import { filterByUser } from '../../store/posts/postsActions'
 import { RootState } from '../../store/rootReducer'
 import { User } from '../../types'
 
-const Dropdown: FC<Props> = ({ users, filterByUser, filterId }) => {
+const Dropdown: FC<Props> = ({ users, filterByUser, filterUserId }) => {
   const [showDropdown, setShowDropdown] = useState(false)
 
   const dropdownHead = useRef<HTMLSpanElement>(null)
@@ -44,7 +44,7 @@ const Dropdown: FC<Props> = ({ users, filterByUser, filterId }) => {
   }, [showDropdown])
 
   const handleDropdownItemClick = (id: number): void =>
-    id === filterId ? filterByUser() : filterByUser(id)
+    id === filterUserId ? filterByUser() : filterByUser(id)
 
   const handleClearFilterClick = (): void => filterByUser()
 
@@ -53,7 +53,7 @@ const Dropdown: FC<Props> = ({ users, filterByUser, filterId }) => {
       <UserFilterItem onClick={handleInsideClick} ref={dropdownHead}>
         User
       </UserFilterItem>
-      <DeleteButtonBox show={filterId ? true : false}>
+      <DeleteButtonBox show={filterUserId ? true : false}>
         <DeleteButton onClick={handleClearFilterClick}>✕</DeleteButton>
       </DeleteButtonBox>
       <DropdownContainer show={showDropdown}>
@@ -63,7 +63,7 @@ const Dropdown: FC<Props> = ({ users, filterByUser, filterId }) => {
               key={element.id}
               onClick={(): void => handleDropdownItemClick(element.id)}
               highlight={
-                element.id === filterId ? 'rgba(60, 120, 180, 0.3)' : null
+                element.id === filterUserId ? 'rgba(60, 120, 180, 0.3)' : null
               }
               className="Item"
             >
@@ -80,10 +80,10 @@ const mapStateToProps = (
   state: RootState
 ): {
   users: User[]
-  filterId: number | null
+  filterUserId: null | number
 } => ({
   users: state.posts.users,
-  filterId: state.posts.filterId,
+  filterUserId: state.posts.filterUserId,
 })
 
 const mapDispatchToProps = { filterByUser }

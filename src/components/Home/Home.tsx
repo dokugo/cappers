@@ -8,19 +8,27 @@ import Filter from './Filter'
 import PostList from './PostList'
 import Search from './Search'
 
-const Home: FC<Props> = ({ loading, error, data, filterId, searchText }) => {
-  const filterPosts = (filterId: number): Post[] =>
-    data.filter((element: Post) => element.userId === filterId)
+const Home: FC<Props> = ({
+  loading,
+  error,
+  data,
+  filterUserId,
+  searchText,
+}) => {
+  const filterByUser = (filterUserId: number): Post[] =>
+    data.filter(element => element.userId === filterUserId)
 
-  const filteredPosts = filterId ? filterPosts(filterId) : data
+  const postsByUser = filterUserId ? filterByUser(filterUserId) : data
 
-  const searchPosts = (searchText: string): Post[] =>
-    filteredPosts.filter(
+  const searchByText = (searchText: string): Post[] =>
+    postsByUser.filter(
       element =>
         element.body.includes(searchText) || element.title.includes(searchText)
     )
 
-  const posts = searchText.length ? searchPosts(searchText) : filteredPosts
+  const posts = searchText.length
+    ? searchByText(searchText.toLowerCase())
+    : postsByUser
 
   return (
     <>
@@ -38,13 +46,13 @@ const mapStateToProps = (
   loading: boolean
   error: null | string
   data: Post[]
-  filterId: number | null
+  filterUserId: null | number
   searchText: string
 } => ({
   loading: state.posts.loading.getData,
   error: state.posts.error,
   data: state.posts.data,
-  filterId: state.posts.filterId,
+  filterUserId: state.posts.filterUserId,
   searchText: state.posts.searchText,
 })
 
