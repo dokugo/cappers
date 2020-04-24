@@ -1,15 +1,17 @@
 module.exports = {
   extends: [
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",
-    "plugin:prettier/recommended",
+    "react-app",
     "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "plugin:prettier/recommended",
+    "prettier/@typescript-eslint",
   ],
   plugins: [
+    "react",
     "simple-import-sort",
     "better-styled-components",
-    "react",
     "@typescript-eslint",
     "prettier",
   ],
@@ -17,14 +19,13 @@ module.exports = {
     "browser": true,
     "jasmine": true,
     "jest": true,
+    "es6": true,
   },
   rules: {
     "prettier/prettier": ["error", { "singleQuote": true }],
     "react/prop-types": 0,
     "simple-import-sort/sort": "error",
     "better-styled-components/sort-declarations-alphabetically": 2,
-    // "@typescript-eslint/no-explicit-any": 0,
-    // "@typescript-eslint/explicit-function-return-type": 0,
   },
   globals: {
     "process": true,

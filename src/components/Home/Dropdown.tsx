@@ -137,7 +137,7 @@ const DropdownContainer = styled.section<{ show: boolean }>`
   border: 1px solid rgb(219, 227, 231);
   border-radius: 1px;
   display: ${(props): string => (props.show ? 'block' : 'none')};
-  left: 0px;
+  left: 0;
   position: absolute;
   top: 53px;
 `

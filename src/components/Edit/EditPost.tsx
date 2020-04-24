@@ -90,8 +90,8 @@ export default connector(EditPost)
 const Container = styled.article`
   background: rgba(255, 255, 255, 0.75);
   border-radius: 3px;
-  box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 12px 0px,
-    rgb(219, 227, 231) 0px 0px 0px 1px inset;
+  box-shadow: rgba(0, 0, 0, 0.08) 0 1px 12px 0,
+    rgb(219, 227, 231) 0 0 0 1px inset;
   box-sizing: border-box;
   color: rgb(75, 75, 75);
   display: flex;
@@ -192,7 +192,7 @@ const Button = styled.button`
   user-select: none;
   width: 100%;
   &:focus {
-    box-shadow: rgba(63, 102, 159, 0.35) 0px 0px 0px 3px;
+    box-shadow: rgba(63, 102, 159, 0.35) 0 0 0 3px;
   }
   &:active {
     box-shadow: none;
