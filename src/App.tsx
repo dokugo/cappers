@@ -8,27 +8,18 @@ import EditPost from './components/Edit/EditPost'
 import Home from './components/Home/Home'
 import { getData } from './store/posts/postsActions'
 import { RootState } from './store/rootReducer'
-import NProgress from './utils/nprogress'
+import ProgressBar from './utils/ProgressBar'
 
-const App: FC<Props> = ({
-  isLocalMode,
-  isGetDataLoading,
-  isPostDeleteLoading,
-  isPostUpdateLoading,
-  getData,
-}) => {
+const App: FC<Props> = ({ isLocalMode, getData }) => {
   useEffect(() => {
     const abortController = new AbortController()
     getData(abortController.signal)
     return (): void => abortController.abort()
   }, [getData, isLocalMode])
 
-  isGetDataLoading || isPostUpdateLoading || isPostDeleteLoading
-    ? NProgress.start()
-    : NProgress.done()
-
   return (
     <BrowserRouter>
+      <ProgressBar />
       <GlobalStyle />
       <Main>
         <StyledRouterLink to="/">
@@ -43,18 +34,8 @@ const App: FC<Props> = ({
   )
 }
 
-const mapStateToProps = (
-  state: RootState
-): {
-  isLocalMode: boolean
-  isGetDataLoading: boolean
-  isPostUpdateLoading: boolean
-  isPostDeleteLoading: boolean
-} => ({
+const mapStateToProps = (state: RootState): { isLocalMode: boolean } => ({
   isLocalMode: state.posts.isLocalMode,
-  isGetDataLoading: state.posts.isLoading.getData,
-  isPostUpdateLoading: state.posts.isLoading.postUpdate,
-  isPostDeleteLoading: state.posts.isLoading.postDelete,
 })
 
 const mapDispatchToProps = { getData }
