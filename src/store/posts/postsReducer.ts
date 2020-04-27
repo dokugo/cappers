@@ -3,7 +3,7 @@ import ActionTypes, { Actions } from './actionTypes'
 
 interface State {
   isLocalMode: boolean
-  loading: {
+  isLoading: {
     getData: boolean
     postDelete: boolean
     postUpdate: boolean
@@ -20,7 +20,7 @@ const storedIsLocalMode = localStorage.getItem('isLocalMode')
 
 const initialState: State = {
   isLocalMode: storedIsLocalMode === 'true' ? true : false,
-  loading: {
+  isLoading: {
     getData: false,
     postUpdate: false,
     postDelete: false,
@@ -47,14 +47,14 @@ function postsReducer(state: State = initialState, action: Actions): State {
       return {
         ...state,
         error: null,
-        loading: { ...state.loading, getData: true },
+        isLoading: { ...state.isLoading, getData: true },
       }
 
     case ActionTypes.DATA_LOAD_SUCCESS:
       return {
         ...state,
         error: null,
-        loading: { ...state.loading, getData: false },
+        isLoading: { ...state.isLoading, getData: false },
         data: action.payload.data,
         users: action.payload.users,
       }
@@ -63,7 +63,7 @@ function postsReducer(state: State = initialState, action: Actions): State {
       return {
         ...state,
         error: state.data.length ? null : action.payload,
-        loading: { ...state.loading, getData: false },
+        isLoading: { ...state.isLoading, getData: false },
       }
 
     // POST UPDATE
@@ -72,14 +72,14 @@ function postsReducer(state: State = initialState, action: Actions): State {
       return {
         ...state,
         error: null,
-        loading: { ...state.loading, postUpdate: true },
+        isLoading: { ...state.isLoading, postUpdate: true },
       }
 
     case ActionTypes.POST_UPDATE_SUCCESS:
       return {
         ...state,
         error: null,
-        loading: { ...state.loading, postUpdate: false },
+        isLoading: { ...state.isLoading, postUpdate: false },
         data: [
           ...state.data.map(element =>
             element.id === action.payload.id
@@ -97,7 +97,7 @@ function postsReducer(state: State = initialState, action: Actions): State {
       return {
         ...state,
         error: action.payload,
-        loading: { ...state.loading, postUpdate: false },
+        isLoading: { ...state.isLoading, postUpdate: false },
       }
 
     // POST DELETE
@@ -105,14 +105,14 @@ function postsReducer(state: State = initialState, action: Actions): State {
       return {
         ...state,
         error: null,
-        loading: { ...state.loading, postDelete: true },
+        isLoading: { ...state.isLoading, postDelete: true },
       }
 
     case ActionTypes.POST_DELETE_SUCCESS:
       return {
         ...state,
         error: null,
-        loading: { ...state.loading, postDelete: false },
+        isLoading: { ...state.isLoading, postDelete: false },
         data: [
           ...state.data.filter(element => {
             return element.id !== action.payload
@@ -124,7 +124,7 @@ function postsReducer(state: State = initialState, action: Actions): State {
       return {
         ...state,
         error: action.payload,
-        loading: { ...state.loading, postDelete: false },
+        isLoading: { ...state.isLoading, postDelete: false },
       }
 
     // SORT, FILTER, SEARCH

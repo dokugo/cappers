@@ -11,11 +11,11 @@ import { RootState } from './store/rootReducer'
 import NProgress from './utils/nprogress'
 
 const App: FC<Props> = ({
-  getData,
   isLocalMode,
-  loading,
-  postDeleteLoading,
-  postUpdateLoading,
+  isGetDataLoading,
+  isPostDeleteLoading,
+  isPostUpdateLoading,
+  getData,
 }) => {
   useEffect(() => {
     const abortController = new AbortController()
@@ -23,7 +23,7 @@ const App: FC<Props> = ({
     return (): void => abortController.abort()
   }, [getData, isLocalMode])
 
-  loading || postUpdateLoading || postDeleteLoading
+  isGetDataLoading || isPostUpdateLoading || isPostDeleteLoading
     ? NProgress.start()
     : NProgress.done()
 
@@ -46,15 +46,15 @@ const App: FC<Props> = ({
 const mapStateToProps = (
   state: RootState
 ): {
-  loading: boolean
   isLocalMode: boolean
-  postUpdateLoading: boolean
-  postDeleteLoading: boolean
+  isGetDataLoading: boolean
+  isPostUpdateLoading: boolean
+  isPostDeleteLoading: boolean
 } => ({
-  loading: state.posts.loading.getData,
   isLocalMode: state.posts.isLocalMode,
-  postUpdateLoading: state.posts.loading.postUpdate,
-  postDeleteLoading: state.posts.loading.postDelete,
+  isGetDataLoading: state.posts.isLoading.getData,
+  isPostUpdateLoading: state.posts.isLoading.postUpdate,
+  isPostDeleteLoading: state.posts.isLoading.postDelete,
 })
 
 const mapDispatchToProps = { getData }

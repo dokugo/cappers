@@ -72,7 +72,7 @@ export const updatePost = (post: Pick<Post, 'body' | 'title' | 'id'>) => async (
   dispatch: ThunkDispatch<RootState, undefined, Actions>,
   getState: () => RootState
 ): Promise<void> => {
-  const isLoading = getState().posts.loading.postUpdate
+  const isLoading = getState().posts.isLoading.postUpdate
   if (isLoading) {
     console.error('Post update is already in action.')
     return
@@ -114,7 +114,7 @@ export const deletePost = (id: number) => async (
   dispatch: ThunkDispatch<RootState, undefined, Actions>,
   getState: () => RootState
 ): Promise<void> => {
-  const isLoading = getState().posts.loading.postDelete
+  const isLoading = getState().posts.isLoading.postDelete
   if (isLoading) {
     console.error('Post delete is already in action.')
     return

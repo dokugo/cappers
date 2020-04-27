@@ -10,7 +10,7 @@ import PostList from './PostList'
 import Search from './Search'
 
 const Home: FC<Props> = ({
-  loading,
+  isLoading,
   error,
   data,
   filterUserId,
@@ -36,7 +36,7 @@ const Home: FC<Props> = ({
       <LocalMode />
       <Search />
       <Filter />
-      {!posts.length && loading ? (
+      {!posts.length && isLoading ? (
         <Status>Loading...</Status>
       ) : (
         <PostList posts={posts} />
@@ -49,13 +49,13 @@ const Home: FC<Props> = ({
 const mapStateToProps = (
   state: RootState
 ): {
-  loading: boolean
+  isLoading: boolean
   error: null | string
   data: Post[]
   filterUserId: null | number
   searchText: string
 } => ({
-  loading: state.posts.loading.getData,
+  isLoading: state.posts.isLoading.getData,
   error: state.posts.error,
   data: state.posts.data,
   filterUserId: state.posts.filterUserId,
