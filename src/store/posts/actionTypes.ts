@@ -1,6 +1,8 @@
 import { Post, Sort, User } from '../../types'
 
 enum ActionTypes {
+  DATA_SWITCH_MODE = 'DATA_SWITCH_MODE',
+
   DATA_LOAD_START = 'DATA_LOAD_START',
   DATA_LOAD_SUCCESS = 'DATA_LOAD_SUCCESS',
   DATA_LOAD_ERROR = 'DATA_LOAD_ERROR',
@@ -18,6 +20,10 @@ enum ActionTypes {
   POSTS_SORT_BY_BODY = 'POSTS_SORT_BY_BODY',
   POSTS_FILTER_BY_USER = 'POSTS_FILTER_BY_USER',
   POSTS_SEARCH_BY_TEXT = 'POSTS_SEARCH_BY_TEXT',
+}
+
+type DateSwitchModeAction = {
+  type: typeof ActionTypes.DATA_SWITCH_MODE
 }
 
 // DATA LOAD
@@ -71,7 +77,7 @@ type PostDeleteErrorAction = {
   payload: string
 }
 
-type PostsSearchTextAction = {
+type PostsSearchByTextAction = {
   type: typeof ActionTypes.POSTS_SEARCH_BY_TEXT
   payload: string
 }
@@ -98,6 +104,7 @@ type PostsSortByBodyAction = PostsSort<typeof ActionTypes.POSTS_SORT_BY_BODY>
 export default ActionTypes
 
 export type Actions =
+  | DateSwitchModeAction
   | DataLoadStartAction
   | DataLoadSuccessAction
   | DataLoadErrorAction
@@ -110,5 +117,5 @@ export type Actions =
   | PostsSortByIdAction
   | PostsSortByTitleAction
   | PostsSortByBodyAction
-  | PostsSearchTextAction
+  | PostsSearchByTextAction
   | PostsFilterByUserAction

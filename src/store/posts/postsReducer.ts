@@ -2,6 +2,7 @@ import { Post, Sort, User } from '../../types'
 import ActionTypes, { Actions } from './actionTypes'
 
 interface State {
+  isLocalMode: boolean
   loading: {
     getData: boolean
     postDelete: boolean
@@ -15,7 +16,10 @@ interface State {
   searchText: string
 }
 
+const storedIsLocalMode = localStorage.getItem('isLocalMode')
+
 const initialState: State = {
+  isLocalMode: storedIsLocalMode === 'true' ? true : false,
   loading: {
     getData: false,
     postUpdate: false,
@@ -31,6 +35,12 @@ const initialState: State = {
 
 function postsReducer(state: State = initialState, action: Actions): State {
   switch (action.type) {
+    case ActionTypes.DATA_SWITCH_MODE:
+      return {
+        ...state,
+        isLocalMode: !state.isLocalMode,
+      }
+
     // DATA LOAD
 
     case ActionTypes.DATA_LOAD_START:
@@ -52,7 +62,7 @@ function postsReducer(state: State = initialState, action: Actions): State {
     case ActionTypes.DATA_LOAD_ERROR:
       return {
         ...state,
-        error: action.payload,
+        error: state.data.length ? null : action.payload,
         loading: { ...state.loading, getData: false },
       }
 

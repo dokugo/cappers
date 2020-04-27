@@ -2,33 +2,51 @@ import { ThunkDispatch } from 'redux-thunk'
 
 import { API_ENDPOINT } from '../../config/config'
 import { InitPost, Post, Sort, User } from '../../types'
+import { delay } from '../../utils'
 import { RootState } from '../rootReducer'
 import ActionTypes, { Actions } from './actionTypes'
 
-export const getData = () => async (
+export const switchLocalMode = (isLocalMode: string) => (
   dispatch: ThunkDispatch<RootState, undefined, Actions>
+): void => {
+  localStorage.setItem('isLocalMode', isLocalMode)
+  dispatch({ type: ActionTypes.DATA_SWITCH_MODE })
+}
+
+export const getData = (signal: AbortSignal) => async (
+  dispatch: ThunkDispatch<RootState, undefined, Actions>,
+  getState: () => RootState
 ): Promise<void> => {
+  const isLocalMode = getState().posts.isLocalMode
+  const url = isLocalMode
+    ? { posts: './posts.json', users: './users.json' }
+    : { posts: `${API_ENDPOINT}/posts`, users: `${API_ENDPOINT}/users` }
+
   dispatch({ type: ActionTypes.DATA_LOAD_START })
 
+  if (isLocalMode) await delay(1000)
+
   const getPosts = (): Promise<InitPost[]> =>
-    fetch(`${API_ENDPOINT}/posts`)
+    fetch(url.posts, { signal })
       .then(response => response.json())
-      .catch(() =>
+      .catch(() => {
         dispatch({
           type: ActionTypes.DATA_LOAD_ERROR,
           payload: 'Data load error.',
         })
-      )
+        return
+      })
 
   const getUsers = (): Promise<User[]> =>
-    fetch(`${API_ENDPOINT}/users`)
+    fetch(url.users, { signal })
       .then(response => response.json())
-      .catch(() =>
+      .catch(() => {
         dispatch({
           type: ActionTypes.DATA_LOAD_ERROR,
           payload: 'Data load error.',
         })
-      )
+        return
+      })
 
   const getPostsAndUsers = async (): Promise<void> => {
     const posts: InitPost[] = await getPosts()
@@ -37,7 +55,7 @@ export const getData = () => async (
     if (!Array.isArray(posts || users)) return
 
     const data = posts.map(post => {
-      const user = users.find(user => user.id === post.userId)
+      const user = users?.find(user => user.id === post.userId)
       return { ...post, userName: user?.name }
     })
 
@@ -51,9 +69,23 @@ export const getData = () => async (
 }
 
 export const updatePost = (post: Pick<Post, 'body' | 'title' | 'id'>) => async (
-  dispatch: ThunkDispatch<RootState, undefined, Actions>
+  dispatch: ThunkDispatch<RootState, undefined, Actions>,
+  getState: () => RootState
 ): Promise<void> => {
+  const isLoading = getState().posts.loading.postUpdate
+  if (isLoading) {
+    console.error('Post update is already in action.')
+    return
+  }
+
   dispatch({ type: ActionTypes.POST_UPDATE_START })
+
+  const isLocalMode = getState().posts.isLocalMode
+  if (isLocalMode) {
+    await delay(1000)
+    dispatch({ type: ActionTypes.POST_UPDATE_SUCCESS, payload: post })
+    return
+  }
 
   await fetch(`${API_ENDPOINT}/posts/${post.id}`, {
     method: 'PATCH',
@@ -79,13 +111,25 @@ export const updatePost = (post: Pick<Post, 'body' | 'title' | 'id'>) => async (
 }
 
 export const deletePost = (id: number) => async (
-  dispatch: ThunkDispatch<RootState, undefined, Actions>
+  dispatch: ThunkDispatch<RootState, undefined, Actions>,
+  getState: () => RootState
 ): Promise<void> => {
+  const isLoading = getState().posts.loading.postDelete
+  if (isLoading) {
+    console.error('Post delete is already in action.')
+    return
+  }
+
   dispatch({ type: ActionTypes.POST_DELETE_START })
 
-  await fetch(`${API_ENDPOINT}/posts/${id}`, {
-    method: 'DELETE',
-  })
+  const isLocalMode = getState().posts.isLocalMode
+  if (isLocalMode) {
+    await delay(1000)
+    dispatch({ type: ActionTypes.POST_DELETE_SUCCESS, payload: id })
+    return
+  }
+
+  await fetch(`${API_ENDPOINT}/posts/${id}`, { method: 'DELETE' })
     .then(response => {
       if (response.status === 200) {
         dispatch({ type: ActionTypes.POST_DELETE_SUCCESS, payload: id })
