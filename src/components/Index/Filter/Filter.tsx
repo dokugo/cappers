@@ -6,9 +6,9 @@ import {
   sortByBody,
   sortById,
   sortByTitle,
-} from '../../store/posts/postsActions'
-import { RootState } from '../../store/rootReducer'
-import { Post, Sort } from '../../types'
+} from '../../../store/posts/postsActions'
+import { RootState } from '../../../store/rootReducer'
+import { Post, Sort } from '../../../types'
 import Dropdown from './Dropdown'
 
 const Filter: FC<Props> = ({

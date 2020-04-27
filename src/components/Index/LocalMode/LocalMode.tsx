@@ -2,9 +2,9 @@ import React, { FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import styled from 'styled-components/macro'
 
-import { switchLocalMode } from '../../store/posts/postsActions'
-import { RootState } from '../../store/rootReducer'
-import Switch from '../ui/Switch'
+import { switchLocalMode } from '../../../store/posts/postsActions'
+import { RootState } from '../../../store/rootReducer'
+import Switch from './Switch'
 
 const LocalMode: FC<Props> = ({ switchLocalMode, isLocalMode }) => {
   const setState = (isChecked: boolean): void =>

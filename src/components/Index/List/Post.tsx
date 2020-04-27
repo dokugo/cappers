@@ -3,8 +3,8 @@ import { connect, ConnectedProps } from 'react-redux'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
-import { deletePost } from '../../store/posts/postsActions'
-import { Post } from '../../types'
+import { deletePost } from '../../../store/posts/postsActions'
+import { Post } from '../../../types'
 
 type Props = PropsFromRedux & { post: Post }
 

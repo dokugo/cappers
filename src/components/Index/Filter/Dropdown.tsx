@@ -2,9 +2,9 @@ import React, { FC, useEffect, useRef, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import styled from 'styled-components/macro'
 
-import { filterByUser } from '../../store/posts/postsActions'
-import { RootState } from '../../store/rootReducer'
-import { User } from '../../types'
+import { filterByUser } from '../../../store/posts/postsActions'
+import { RootState } from '../../../store/rootReducer'
+import { User } from '../../../types'
 
 const Dropdown: FC<Props> = ({ users, filterByUser, filterUserId }) => {
   const [showDropdown, setShowDropdown] = useState(false)

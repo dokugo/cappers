@@ -2,8 +2,8 @@ import React, { FC, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import styled from 'styled-components/macro'
 
-import { searchByText } from '../../store/posts/postsActions'
-import { RootState } from '../../store/rootReducer'
+import { searchByText } from '../../../store/posts/postsActions'
+import { RootState } from '../../../store/rootReducer'
 
 const Search: FC<Props> = ({ searchText, searchByText }) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void =>

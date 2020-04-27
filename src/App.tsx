@@ -5,7 +5,7 @@ import { BrowserRouter, Link, Route, Switch } from 'react-router-dom'
 import styled, { createGlobalStyle } from 'styled-components/macro'
 
 import EditPost from './components/Edit/EditPost'
-import Home from './components/Home/Home'
+import Index from './components/Index/Index'
 import { getData } from './store/posts/postsActions'
 import { RootState } from './store/rootReducer'
 import ProgressBar from './utils/ProgressBar'
@@ -27,7 +27,7 @@ const App: FC<Props> = ({ isLocalMode, getData }) => {
         </StyledRouterLink>
         <Switch>
           <Route component={EditPost} path="/post/:id" />
-          <Route component={Home} />
+          <Route component={Index} />
         </Switch>
       </Main>
     </BrowserRouter>

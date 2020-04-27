@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import styled from 'styled-components/macro'
 
-import { Post } from '../../types'
+import { Post } from '../../../types'
 import PostItem from './Post'
 
 interface Props {

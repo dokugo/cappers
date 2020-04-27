@@ -4,12 +4,12 @@ import styled from 'styled-components/macro'
 
 import { RootState } from '../../store/rootReducer'
 import { Post } from '../../types'
-import Filter from './Filter'
-import LocalMode from './LocalMode'
-import PostList from './PostList'
-import Search from './Search'
+import Filter from './Filter/Filter'
+import PostList from './List/PostList'
+import LocalMode from './LocalMode/LocalMode'
+import Search from './Search/Search'
 
-const Home: FC<Props> = ({
+const Index: FC<Props> = ({
   isLoading,
   error,
   data,
@@ -66,7 +66,7 @@ const connector = connect(mapStateToProps)
 
 type Props = ConnectedProps<typeof connector>
 
-export default connector(Home)
+export default connector(Index)
 
 const Status = styled.span`
   color: rgb(75, 75, 75);
