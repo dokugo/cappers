@@ -8,24 +8,24 @@ const getState = (state: RootState): RootState => state
 
 export const loadingSelector = createSelector(
   getState,
-  state => state.posts.loading.getData
+  state => state.posts.isLoading.getData
 )
 
 export const errorSelector = createSelector(
   getState,
-  state => state.posts.error
+  state => state.posts.isLoading.error
 )
 
 export const postsSelector = createSelector(getState, state => state.posts.data)
 
 export const filterIdSelector = createSelector(
   getState,
-  state => state.posts.filterUserId
+  state => state.posts.dataState.filterUserId
 )
 
 export const searchTextSelector = createSelector(
   getState,
-  state => state.posts.searchText
+  state => state.posts.dataState.searchText
 )
 
 /* export const homeSelector = createSelector(

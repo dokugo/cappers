@@ -41,7 +41,7 @@ const Search: FC<Props> = ({ searchText, searchByText }) => {
 }
 
 const mapStateToProps = (state: RootState): { searchText: string } => ({
-  searchText: state.posts.searchText,
+  searchText: state.posts.dataState.searchText,
 })
 
 const mapDispatchToProps = { searchByText }

@@ -41,6 +41,7 @@ const EditPost: FC<Props> = ({ post, updatePost, error }) => {
   if (post) {
     return (
       <Container>
+        <Title>Edit post</Title>
         <Form onSubmit={handleSubmit}>
           <InputField>
             <Label htmlFor="title">Title</Label>
@@ -76,7 +77,7 @@ const mapStateToProps = (
   post: state.posts.data.find(
     post => post.id === Number(ownProps.match.params.id)
   ),
-  error: state.posts.error,
+  error: state.posts.isLoading.error,
 })
 
 const mapDispatchToProps = { updatePost }
@@ -102,6 +103,9 @@ const Container = styled.article`
   @media only screen and (max-width: 769px) {
     width: 100%;
   }
+`
+const Title = styled.h2`
+  text-align: center;
 `
 
 const Form = styled.form``

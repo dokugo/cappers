@@ -13,12 +13,12 @@ import Dropdown from './Dropdown'
 
 const Filter: FC<Props> = ({
   posts,
-  sort,
+  sortOrder,
   sortById,
   sortByTitle,
   sortByBody,
 }) => {
-  const sortNext = sort === Sort.ASC ? Sort.DESC : Sort.ASC
+  const sortNext = sortOrder === Sort.ASC ? Sort.DESC : Sort.ASC
 
   const handleSortById = (): void => sortById(posts, sortNext)
   const handleSortByTitle = (): void => sortByTitle(posts, sortNext)
@@ -46,10 +46,10 @@ const mapStateToProps = (
   state: RootState
 ): {
   posts: Post[]
-  sort: Sort
+  sortOrder: Sort
 } => ({
   posts: state.posts.data,
-  sort: state.posts.sort,
+  sortOrder: state.posts.dataState.sortOrder,
 })
 
 const mapDispatchToProps = { sortById, sortByTitle, sortByBody }

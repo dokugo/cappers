@@ -92,7 +92,7 @@ type PostsFilterByUserAction = {
 type PostsSort<T> = {
   type: T
   payload: Post[]
-  sort: Sort
+  sortOrder: Sort
 }
 
 type PostsSortByIdAction = PostsSort<typeof ActionTypes.POSTS_SORT_BY_ID>

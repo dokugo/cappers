@@ -56,10 +56,10 @@ const mapStateToProps = (
   searchText: string
 } => ({
   isLoading: state.posts.isLoading.getData,
-  error: state.posts.error,
+  error: state.posts.isLoading.error,
   data: state.posts.data,
-  filterUserId: state.posts.filterUserId,
-  searchText: state.posts.searchText,
+  filterUserId: state.posts.dataState.filterUserId,
+  searchText: state.posts.dataState.searchText,
 })
 
 const connector = connect(mapStateToProps)

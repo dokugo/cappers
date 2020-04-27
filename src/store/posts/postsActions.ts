@@ -19,7 +19,10 @@ export const getData = (signal: AbortSignal) => async (
 ): Promise<void> => {
   const isLocalMode = getState().posts.isLocalMode
   const url = isLocalMode
-    ? { posts: './posts.json', users: './users.json' }
+    ? {
+        posts: `${process.env.PUBLIC_URL}/posts.json`,
+        users: `${process.env.PUBLIC_URL}/users.json`,
+      }
     : { posts: `${API_ENDPOINT}/posts`, users: `${API_ENDPOINT}/users` }
 
   dispatch({ type: ActionTypes.DATA_LOAD_START })
@@ -160,7 +163,7 @@ export const sortById = (posts: Post[], direction: Sort) => (
   dispatch({
     type: ActionTypes.POSTS_SORT_BY_ID,
     payload: sorted,
-    sort: direction,
+    sortOrder: direction,
   })
 }
 
@@ -181,7 +184,7 @@ export const sortByTitle = (posts: Post[], direction: Sort) => (
   dispatch({
     type: ActionTypes.POSTS_SORT_BY_TITLE,
     payload: sorted,
-    sort: direction,
+    sortOrder: direction,
   })
 }
 
@@ -201,7 +204,7 @@ export const sortByBody = (posts: Post[], direction: Sort) => (
   dispatch({
     type: ActionTypes.POSTS_SORT_BY_BODY,
     payload: sorted,
-    sort: direction,
+    sortOrder: direction,
   })
 }
 

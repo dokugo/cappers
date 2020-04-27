@@ -83,7 +83,7 @@ const mapStateToProps = (
   filterUserId: null | number
 } => ({
   users: state.posts.users,
-  filterUserId: state.posts.filterUserId,
+  filterUserId: state.posts.dataState.filterUserId,
 })
 
 const mapDispatchToProps = { filterByUser }
