@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
 import { hot } from 'react-hot-loader/root'
 import { connect, ConnectedProps } from 'react-redux'
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom'
@@ -9,15 +9,19 @@ import Home from './components/Home/Home'
 import { getData } from './store/posts/postsActions'
 import { RootState } from './store/rootReducer'
 import NProgress from './utils/nprogress'
-import useDidMount from './utils/useDidMount'
 
 const App: FC<Props> = ({
   getData,
+  isLocalMode,
   loading,
   postDeleteLoading,
   postUpdateLoading,
 }) => {
-  useDidMount(() => getData())
+  useEffect(() => {
+    const abortController = new AbortController()
+    getData(abortController.signal)
+    return (): void => abortController.abort()
+  }, [getData, isLocalMode])
 
   loading || postUpdateLoading || postDeleteLoading
     ? NProgress.start()
@@ -43,10 +47,12 @@ const mapStateToProps = (
   state: RootState
 ): {
   loading: boolean
+  isLocalMode: boolean
   postUpdateLoading: boolean
   postDeleteLoading: boolean
 } => ({
   loading: state.posts.loading.getData,
+  isLocalMode: state.posts.isLocalMode,
   postUpdateLoading: state.posts.loading.postUpdate,
   postDeleteLoading: state.posts.loading.postDelete,
 })

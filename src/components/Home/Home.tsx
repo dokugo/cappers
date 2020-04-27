@@ -5,6 +5,7 @@ import styled from 'styled-components/macro'
 import { RootState } from '../../store/rootReducer'
 import { Post } from '../../types'
 import Filter from './Filter'
+import LocalMode from './LocalMode'
 import PostList from './PostList'
 import Search from './Search'
 
@@ -32,10 +33,15 @@ const Home: FC<Props> = ({
 
   return (
     <>
+      <LocalMode />
       <Search />
       <Filter />
-      {loading ? <Loading>Loading...</Loading> : <PostList posts={posts} />}
-      {error ? <Loading>{error}</Loading> : null}
+      {!posts.length && loading ? (
+        <Status>Loading...</Status>
+      ) : (
+        <PostList posts={posts} />
+      )}
+      {error ? <Status>{error}</Status> : null}
     </>
   )
 }
@@ -62,7 +68,7 @@ type Props = ConnectedProps<typeof connector>
 
 export default connector(Home)
 
-const Loading = styled.span`
+const Status = styled.span`
   color: rgb(75, 75, 75);
   font-size: 24px;
   margin-top: 50px;
